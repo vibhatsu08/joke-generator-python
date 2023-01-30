@@ -116,7 +116,7 @@ def anotherOne (language, category) :
         anotherOne (language, category)
     elif another == (translator.translate("no", src="en", dest="{}".format(language))).text :
         print((translator.translate("Alright, thanks for playing!", src="en", dest="{}".format(language))).text)
-    else :
+    elif another != (translator.translate("yes", src="en", dest="{}".format(language))).text and another != (translator.translate("no", src="en", dest="{}".format(language))).text:
         print((translator.translate("Please enter a valid value : \'yes\' or \'no\' ", src="en", dest="{}".format(language))).text)
         anotherOne (language, category)
 
