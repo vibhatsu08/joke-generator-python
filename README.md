@@ -4,9 +4,9 @@ This repository is for the joke generator made in Python. </br>
 Title - JokeGenerator-Python </br>
 Description - A joke generator project for the terminal made in Python. The jokes are fetched from the pyjokes library, and the multiple language support is provided by the integration of the 'googletrans' library for fluid translation. </br>
 
-<img src="images/result-1.png" alt="Program output in English">
+<img src="result-images/result-1.png" alt="Program output in English">
 </br>
-<img src="images/result-2.png" alt="Program output in alternative language preferred by the User.">
+<img src="result-images/result-2.png" alt="Program output in alternative language preferred by the User.">
 
 ProjectLog[0] - The idea for this project is simple, the user will be asked for the permission to move forward with the program, if permission is granted, the user will be asked for the language and the category. I have ideas for a random joke too, i'll implement it later after the first working version of the program is up and ready. </br>
 ProjectLog[1] - Completed the English version for the project. Still working on the languages supported by the pyjokes library. Will release it soon.</br>
