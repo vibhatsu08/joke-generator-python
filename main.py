@@ -106,18 +106,18 @@ def generateJoke (language, category) :
         
 # function to implement an another one joke. Recursive function works as long as the another has the input == "yes".
 def anotherOne (language, category) :
-    another = input("Wanna hear another one? ")
+    another = input((translator.translate("Wanna hear another one? ", src="en", dest="{}".format(language))).text)
     if another == "yes" :
         getJoke = pyjokes.get_joke(language, category)
         print(getJoke)
         anotherOne (language, category)
     elif another == "no" :
-        print("Alright, thanks for playing!")
+        print((translator.translate("Alright, thanks for playing!", src="en", dest="{}".format(language))).text)
     else :
-        print("Please enter a valid value : \'yes\' or \'no\' ")
+        print((translator.translate("Please enter a valid value : \'yes\' or \'no\' ", src="en", dest="{}".format(language))).text)
         anotherOne (language, category)
-        return "Thanks for playing!"
-    return "Thanks for playing!"
+        return print((translator.translate("Alright, thanks for playing!", src="en", dest="{}".format(language))).text)
+    return print((translator.translate("Alright, thanks for playing!", src="en", dest="{}".format(language))).text)
 
 # calls the first function to trigger the program.
 userResponse()
