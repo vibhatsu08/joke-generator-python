@@ -6,9 +6,9 @@ translator = Translator ()
 
 def userResponse () :
     permission = input("Ready for a joke? || \'yes\' or \'no\' : ")
+    
     if permission.lower() == "yes" :
         languageForTheJoke ()
-        
     elif permission.lower() == "no" :
         print("See you next time!")
     else :
@@ -22,6 +22,7 @@ def languageForTheJoke () :
     
     for i in range (len(languages)) :
         print(languages[i], end="\n")
+        
     language = input("Please enter the language or the language code : ")
     
     match language :
@@ -29,42 +30,35 @@ def languageForTheJoke () :
             language = "en"
             print("Language chosen is \'English\'")
             categoryForTheJoke (language)
-            
         case "2" :
             language = "de"
             test = translator.translate("Language chosen is \'German\'", src="en", dest="{}".format(language))
             print(test.text)
             categoryForTheJoke (language)
-            
         case "3" :
             language = "es"
             test = translator.translate("Language chosen is \'Spanish\'", src="en", dest="{}".format(language))
             print(test.text)
             categoryForTheJoke (language)
-            
         case "4" :
             language = "it"
             test = translator.translate("Language chosen is \'Italian\'", src="en", dest="{}".format(language))
             print(test.text)
             categoryForTheJoke (language)
-            
         case "5" :
             language = "gl"
             test = translator.translate("Language chosen is \'Galician\'", src="en", dest="{}".format(language))
             print(test.text)
             categoryForTheJoke (language)
-            
         case "6" :
             language = "eu"
             test = translator.translate("Language chosen is \'Basque\'", src="en", dest="{}".format(language))
             print(test.text)
             categoryForTheJoke (language)
-            
         case "7" :
             language = "en"
             print("Language chosen is \'default\' which is \'English\'")
             categoryForTheJoke (language)
-            
         
         case other :
             print("Please enter a valid language!")
@@ -72,6 +66,7 @@ def languageForTheJoke () :
     
 def categoryForTheJoke (language) :
     categories = ["1) : neutral : Neutral geeky jokes", "2) : all : All types of joke"]
+    
     for i in range (len(categories)) :
         print((translator.translate(categories[i], src="en", dest="{}".format(language))).text, end="\n")
         
@@ -91,16 +86,29 @@ def categoryForTheJoke (language) :
         category = "all"
         print((translator.translate("Category chosen in \'all\'", src="en", dest="{}".format(language))).text)
         generateJoke (language, category)
-    
     else :
         print("Please enter a valid category : ")
         categoryForTheJoke (language)
         
             
 def generateJoke (language, category) :
-    "The language chosen is \'{}\' and the category chosen is \'{}\'".format(language, category)
     print((translator.translate("The language chosen is \'{}\' and the category chosen is \'{}\'".format(language, category), src="en", dest="{}".format(language))).text)
     getJoke = pyjokes.get_joke(language, category)
     print(getJoke)
+    anotherOne (language, category)
+        
+def anotherOne (language, category) :
+    another = input("Wanna hear another one? ")
+    if another == "yes" :
+        getJoke = pyjokes.get_joke(language, category)
+        print(getJoke)
+        anotherOne (language, category)
+    elif another == "no" :
+        print("Alright, thanks for playing!")
+    else :
+        print("Please enter a valid value : \'yes\' or \'no\' ")
+        anotherOne (language, category)
+        return "Thanks for playing!"
+    return "Thanks for playing!"
 
 userResponse()
