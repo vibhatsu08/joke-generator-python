@@ -1,6 +1,9 @@
 import pyjokes
 from googletrans import Translator
 
+global language, category
+language, category = "", ""
+
 # creating an instance of the Translator.
 translator = Translator ()
 
