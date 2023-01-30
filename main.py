@@ -1,102 +1,106 @@
 import pyjokes
+from googletrans import Translator
+translator = Translator ()
+
+# (translator.translate("", src="en", dest="{}".format(language))).text
 
 def userResponse () :
     permission = input("Ready for a joke? || \'yes\' or \'no\' : ")
     if permission.lower() == "yes" :
         languageForTheJoke ()
         
-    if permission.lower() == "no" :
+    elif permission.lower() == "no" :
         print("See you next time!")
-        
     else :
-        print("Please enter a valid response : ")
-        userResponse ()
+        print("boo")
+        userResponse ()  
         
 def languageForTheJoke () :
     # for language
     print("What language would you prefer your joke in ?")
-    languages = ["English : en", "German : de", "Spanish : es", "Italian : it", "Galician : gl", "Basque : eu", "or \'Default\' : \'df\'"]
+    languages = ["1) : English : en", "2) : German : de", "3) : Spanish : es", "4) : Italian : it", "5) : Galician : gl", "6) : Basque : eu", "7) : or \'Default\' : \'df\'"]
     
     for i in range (len(languages)) :
         print(languages[i], end="\n")
     language = input("Please enter the language or the language code : ")
     
     match language :
-        case "English" | "en" | "english" :
+        case "1" :
             language = "en"
-            print("Language chosen in \'English\'")
+            print("Language chosen is \'English\'")
             categoryForTheJoke (language)
             
-        # case "German" | "de" | "german" :
-        #     language = "de"
-        #     print("Gewählte Sprache Deutsch")
+        case "2" :
+            language = "de"
+            test = translator.translate("Language chosen is \'German\'", src="en", dest="{}".format(language))
+            print(test.text)
+            categoryForTheJoke (language)
             
-        # case "Spanish" | "es" | "spanish" :
-        #     language = "es"
-        #     print("Idioma elegido en español")
+        case "3" :
+            language = "es"
+            test = translator.translate("Language chosen is \'Spanish\'", src="en", dest="{}".format(language))
+            print(test.text)
+            categoryForTheJoke (language)
             
-        # case "Italian" | "it" | "italian" :
-        #     language = "it"
-        #     print("Lingua scelta in italiano")
+        case "4" :
+            language = "it"
+            test = translator.translate("Language chosen is \'Italian\'", src="en", dest="{}".format(language))
+            print(test.text)
+            categoryForTheJoke (language)
             
-        # case "Galician" | "gl" | "galician" :
-        #     language = "gl"
-        #     print("Lingua escollida en galego")
+        case "5" :
+            language = "gl"
+            test = translator.translate("Language chosen is \'Galician\'", src="en", dest="{}".format(language))
+            print(test.text)
+            categoryForTheJoke (language)
             
-        # case "Basque" | "eu" | "basque" :
-        #     language = "eu"
-        #     print("Euskaraz aukeratutako hizkuntza")
+        case "6" :
+            language = "eu"
+            test = translator.translate("Language chosen is \'Basque\'", src="en", dest="{}".format(language))
+            print(test.text)
+            categoryForTheJoke (language)
             
-        # case "default" | "df" :
-        #     language = "en"
-        #     print("Default language chosen is English")
+        case "7" :
+            language = "en"
+            print("Language chosen is \'default\' which is \'English\'")
+            categoryForTheJoke (language)
             
         
         case other :
-            print("Other languages are unavailable at the moment...Sorry for the inconvenience.")
-            print("Default language chosen is English")
-            language = "en"
-            categoryForTheJoke (language)
-            # print("Please enter a valid language!")
-            # languageForTheJoke ()
+            print("Please enter a valid language!")
+            languageForTheJoke ()
     
 def categoryForTheJoke (language) :
-    categories = ["neutral : Neutral geeky jokes", "twister : Tongue-twister", "all : All types of joke"]
+    categories = ["1) : neutral : Neutral geeky jokes", "2) : all : All types of joke"]
     for i in range (len(categories)) :
-        print(categories[i], end="\n")
-    category = input("Please enter the category or the category or the category value : ")
-    match category :
-        case "neutral" | "Neutral geeky jokes" :
-            category = "neutral"
-            print("Category chosen in \'Neutral\'")
-            generateJoke (language, category)
-            
-        case "twister" | "Tongue-twister" :
-            category = "twister"
-            print("Category chosen in \'Twister\'")
-            generateJoke (language, category)
-            
-        case "all" | "All types of joke" :
-            category = "all"
-            print("Category chosen in \'All\'")
-            generateJoke (language, category)
+        print((translator.translate(categories[i], src="en", dest="{}".format(language))).text, end="\n")
         
-        case other :
-            print("Please enter a valid category : ")
-            categoryForTheJoke (language)
+    category = input((translator.translate("Please enter the category number : ", src="en", dest="{}".format(language))).text)
+    
+    if category == "1" :
+        category = "neutral"
+        print((translator.translate("Category chosen in \'Neutral\'", src="en", dest="{}".format(language))).text)
+        generateJoke (language, category)
+        
+    # elif category == "2" :
+    #     category = "twister"
+    #     print((translator.translate("Category chosen in \'twister\'", src="en", dest="{}".format(language))).text)
+    #     generateJoke (language, category)
+        
+    elif category == "2" :
+        category = "all"
+        print((translator.translate("Category chosen in \'all\'", src="en", dest="{}".format(language))).text)
+        generateJoke (language, category)
+    
+    else :
+        print("Please enter a valid category : ")
+        categoryForTheJoke (language)
+        
             
 def generateJoke (language, category) :
-    print("The language chosen is \'{}\' and the category chosen is \'{}\'".format(language, category))
+    "The language chosen is \'{}\' and the category chosen is \'{}\'".format(language, category)
+    print((translator.translate("The language chosen is \'{}\' and the category chosen is \'{}\'".format(language, category), src="en", dest="{}".format(language))).text)
     getJoke = pyjokes.get_joke(language, category)
     print(getJoke)
-    # for category
-    # print("What category would you prefer your joke in ?")
-    # categories = ["neutral : Neutral geeky jokes", "twister : Tongue-twister", "all : All types of joke"]
-    # for i in range (len(categories)) :
-    #     print(categories[i], end="\n")
-    # category = input("Please enter the category or the category or the category value : ")
-    # match category :
-    #     case "neutral" | "Neutral geeky jokes" :
-    #         category = "neutral"
-    #         print("Category chosen is Neutral")
-languageForTheJoke ()
+
+userResponse()
