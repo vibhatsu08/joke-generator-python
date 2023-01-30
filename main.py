@@ -12,7 +12,7 @@ def userResponse () :
     elif permission.lower() == "no" :
         print("See you next time!")
     else :
-        print("boo")
+        print("Please enter a valid response : ")
         userResponse ()  
         
 def languageForTheJoke () :
