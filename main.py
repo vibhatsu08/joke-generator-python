@@ -1,9 +1,13 @@
 import pyjokes
 from googletrans import Translator
+
+# creating an instance of the Translator.
 translator = Translator ()
 
+# the template used to translate the input code from it's source language which is "English" : "en" to the user's preference language code.
 # (translator.translate("", src="en", dest="{}".format(language))).text
 
+# function to start the program, takes user response/permission to get started.
 def userResponse () :
     permission = input("Ready for a joke? || \'yes\' or \'no\' : ")
     
@@ -15,6 +19,7 @@ def userResponse () :
         print("Please enter a valid response : ")
         userResponse ()  
         
+# function to get the language for the joke.
 def languageForTheJoke () :
     # for language
     print("What language would you prefer your joke in ?")
@@ -63,7 +68,8 @@ def languageForTheJoke () :
         case other :
             print("Please enter a valid language!")
             languageForTheJoke ()
-    
+
+# function to get the category for the joke in the user's preferred language.
 def categoryForTheJoke (language) :
     categories = ["1) : neutral : Neutral geeky jokes", "2) : all : All types of joke"]
     
@@ -77,6 +83,7 @@ def categoryForTheJoke (language) :
         print((translator.translate("Category chosen in \'Neutral\'", src="en", dest="{}".format(language))).text)
         generateJoke (language, category)
         
+    # this category isn't working, checked from my side, didn't find any bugs in my code.
     # elif category == "2" :
     #     category = "twister"
     #     print((translator.translate("Category chosen in \'twister\'", src="en", dest="{}".format(language))).text)
@@ -90,13 +97,14 @@ def categoryForTheJoke (language) :
         print("Please enter a valid category : ")
         categoryForTheJoke (language)
         
-            
+# function to generate the joke based on the user's chosen language and category.
 def generateJoke (language, category) :
     print((translator.translate("The language chosen is \'{}\' and the category chosen is \'{}\'".format(language, category), src="en", dest="{}".format(language))).text)
     getJoke = pyjokes.get_joke(language, category)
     print(getJoke)
     anotherOne (language, category)
         
+# function to implement an another one joke. Recursive function works as long as the another has the input == "yes".
 def anotherOne (language, category) :
     another = input("Wanna hear another one? ")
     if another == "yes" :
@@ -111,4 +119,5 @@ def anotherOne (language, category) :
         return "Thanks for playing!"
     return "Thanks for playing!"
 
+# calls the first function to trigger the program.
 userResponse()
